@@ -1,7 +1,7 @@
 package racingcar.domain;
 
 public class Car {
-    public CarName name;
+    private CarName name;
 
     public Car(String name){
         this.name = new CarName(name);
