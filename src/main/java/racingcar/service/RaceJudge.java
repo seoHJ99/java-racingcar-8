@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class MoveJudge {
+public class RaceJudge {
 
     private final String DIGIT_REGEX = "^[1-9]\\d*$";
     private final int FORWARD_NUMBER = 5;
