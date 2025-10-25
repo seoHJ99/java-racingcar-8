@@ -1,10 +1,9 @@
-package racingcar.domain;
+package racingcar.domain.repository;
 
-import racingcar.domain.Car;
+import racingcar.domain.car.Car;
 
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class LocationRepository {

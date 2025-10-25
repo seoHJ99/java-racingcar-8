@@ -1,6 +1,8 @@
-package racingcar.domain;
+package racingcar.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import racingcar.domain.car.Car;
+import racingcar.domain.repository.LocationRepository;
 
 import java.util.List;
 
