@@ -19,7 +19,7 @@ public class CarRepository {
         return carRepository.stream()
                 .filter(car -> car.getName().equals(name))
                 .findFirst()
-                .get();
+                .orElse(null);
     }
 
     public static List<Car> getAll(){

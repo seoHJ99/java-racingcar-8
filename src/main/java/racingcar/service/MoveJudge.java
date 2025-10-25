@@ -14,8 +14,28 @@ public class MoveJudge {
     private final String DIGIT_REGEX = "^[1-9]\\d*$";
     private final int FORWARD_NUMBER = 5;
 
-    private int getTryCount(String count) {
-        if (isPositiveNumber(count)) {
+    private void registerCar(Car car) {
+        CarRepository.saveCar(car);
+    }
+
+    public void registerAllCars(List<Car> cars){
+        for(Car car : cars){
+            if(alreadyExist(car)){
+                throw new IllegalArgumentException("자동차 이름은 고유해야 합니다.");
+            }
+            registerCar(car);
+        }
+    }
+
+    private boolean alreadyExist(Car car){
+        if(CarRepository.findByName(car.getName()) == null){
+            return false;
+        }
+        return true;
+    }
+
+    public int getTryCount(String count) {
+        if (!isPositiveNumber(count)) {
             throw new IllegalArgumentException("시도 횟수는 양수로 입력되어야만 합니다.");
         }
 
