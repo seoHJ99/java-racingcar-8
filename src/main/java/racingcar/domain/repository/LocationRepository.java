@@ -10,15 +10,15 @@ public class LocationRepository {
 
     private static final Map<Car, Integer> locationRepository = new HashMap<>();
 
-    public static void saveLocation(Car car, int location){
+    public static void saveLocation(Car car, int location) {
         locationRepository.put(car, location);
     }
 
-    public static int getLocation(Car car){
+    public static int getLocation(Car car) {
         return locationRepository.get(car);
     }
 
-    public static Map<Car, Integer> getAll(){
+    public static Map<Car, Integer> getAll() {
         return Collections.unmodifiableMap(locationRepository);
     }
 }

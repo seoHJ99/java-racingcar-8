@@ -18,20 +18,13 @@ public class MoveJudge {
         CarRepository.saveCar(car);
     }
 
-    public void registerAllCars(List<Car> cars){
-        for(Car car : cars){
-            if(alreadyExist(car)){
+    public void registerAllCars(List<Car> cars) {
+        for (Car car : cars) {
+            if (alreadyExist(car)) {
                 throw new IllegalArgumentException("자동차 이름은 고유해야 합니다.");
             }
             registerCar(car);
         }
-    }
-
-    private boolean alreadyExist(Car car){
-        if(CarRepository.findByName(car.getName()) == null){
-            return false;
-        }
-        return true;
     }
 
     public int getTryCount(String count) {
@@ -46,19 +39,38 @@ public class MoveJudge {
         }
     }
 
+    public List<Car> getWinner() {
+        List<Car> winnerList = new ArrayList<>();
+        int winnerLocation = getHighestLocation();
+
+        for (Car car : CarRepository.getAll()) {
+            if (winnerLocation == LocationRepository.getLocation(car)) {
+                winnerList.add(car);
+            }
+        }
+        return winnerList;
+    }
+
+    public void tryOnceForward(List<Car> cars) {
+        for (Car car : cars) {
+            goForward(car);
+        }
+    }
+
+    private boolean alreadyExist(Car car) {
+        if (CarRepository.findByName(car.getName()) == null) {
+            return false;
+        }
+        return true;
+    }
+
     private boolean isPositiveNumber(String input) {
         if (!input.matches(DIGIT_REGEX))
             return false;
 
         return true;
     }
-
-    public void goForwardAll(List<Car> cars) {
-        for (Car car : cars) {
-            goForward(car);
-        }
-    }
-
+    
     private void goForward(Car car) {
         if (canGo()) {
             int nowLocation = LocationRepository.getLocation(car);
@@ -72,18 +84,6 @@ public class MoveJudge {
 
     private int getRandomNum() {
         return Randoms.pickNumberInRange(0, 9);
-    }
-
-    public List<Car> getWinner() {
-        List<Car> winnerList = new ArrayList<>();
-        int winnerLocation = getHighestLocation();
-
-        for (Car car : CarRepository.getAll()) {
-            if (winnerLocation == LocationRepository.getLocation(car)) {
-                winnerList.add(car);
-            }
-        }
-        return winnerList;
     }
 
     private int getHighestLocation() {
