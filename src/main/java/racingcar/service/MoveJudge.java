@@ -15,6 +15,7 @@ public class MoveJudge {
     private final int FORWARD_NUMBER = 5;
 
     private void registerCar(Car car) {
+        LocationRepository.saveLocation(car, 0);
         CarRepository.saveCar(car);
     }
 
@@ -51,7 +52,7 @@ public class MoveJudge {
         return winnerList;
     }
 
-    public void tryOnceForward(List<Car> cars) {
+    public void forwardOnce(List<Car> cars) {
         for (Car car : cars) {
             goForward(car);
         }
@@ -70,11 +71,11 @@ public class MoveJudge {
 
         return true;
     }
-    
+
     private void goForward(Car car) {
         if (canGo()) {
             int nowLocation = LocationRepository.getLocation(car);
-            LocationRepository.saveLocation(car, nowLocation);
+            LocationRepository.saveLocation(car, nowLocation + 1);
         }
     }
 
