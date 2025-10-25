@@ -18,7 +18,7 @@ public class LocationRepository {
         return locationRepository.get(car);
     }
 
-    public Map<Car, Integer> getAll(){
+    public static Map<Car, Integer> getAll(){
         return Collections.unmodifiableMap(locationRepository);
     }
 }

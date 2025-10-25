@@ -2,9 +2,12 @@ package racingcar.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import racingcar.domain.car.Car;
+import racingcar.domain.repository.CarRepository;
 import racingcar.domain.repository.LocationRepository;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class MoveJudge {
 
@@ -49,6 +52,26 @@ public class MoveJudge {
 
     private int getRandomNum() {
         return Randoms.pickNumberInRange(0, 9);
+    }
+
+    public List<Car> getWinner() {
+        List<Car> winnerList = new ArrayList<>();
+        int winnerLocation = getHighestLocation();
+
+        for (Car car : CarRepository.getAll()) {
+            if (winnerLocation == LocationRepository.getLocation(car)) {
+                winnerList.add(car);
+            }
+        }
+        return winnerList;
+    }
+
+    private int getHighestLocation() {
+        int max = 0;
+        for (Map.Entry<Car, Integer> entry : LocationRepository.getAll().entrySet()) {
+            max = Math.max(entry.getValue(), max);
+        }
+        return max;
     }
 
 }
