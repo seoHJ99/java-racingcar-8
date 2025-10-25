@@ -7,8 +7,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LocationRepository {
-
     private final Map<Car, Integer> locationRepository = new HashMap<>();
+    private static LocationRepository locationRepo;
+
+    private LocationRepository() {
+    }
+
+    public static LocationRepository getInstance() {
+        if (locationRepo == null)
+            locationRepo = new LocationRepository();
+        return locationRepo;
+    }
 
     public void saveLocation(Car car, int location) {
         locationRepository.put(car, location);

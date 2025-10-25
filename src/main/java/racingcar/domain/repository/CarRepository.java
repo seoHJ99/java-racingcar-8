@@ -7,9 +7,19 @@ import java.util.Collections;
 import java.util.List;
 
 public class CarRepository {
-
     // 순서 보장을 위해 리스트로 저장
     private final List<Car> carRepository = new ArrayList<>();
+
+    private static CarRepository carRepo;
+
+    private CarRepository() {
+    }
+
+    public static CarRepository getInstance() {
+        if (carRepo == null)
+            carRepo = new CarRepository();
+        return carRepo;
+    }
 
     public void saveCar(Car car) {
         carRepository.add(car);

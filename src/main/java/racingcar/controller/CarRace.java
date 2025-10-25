@@ -15,11 +15,11 @@ public class CarRace {
     private final InputView inputView;
     private final OutputView outputView;
 
-    public CarRace(RaceJudge raceJudge, CarFactory carFactory, OutputView outputView, InputView inputView) {
+    public CarRace(RaceJudge raceJudge, CarFactory carFactory, InputView inputView, OutputView outputView) {
         this.raceJudge = raceJudge;
         this.carFactory = carFactory;
-        this.outputView = outputView;
         this.inputView = inputView;
+        this.outputView = outputView;
     }
 
     public void start() {
