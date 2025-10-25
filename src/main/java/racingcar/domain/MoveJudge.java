@@ -36,8 +36,8 @@ public class MoveJudge {
 
     private void goForward(Car car) {
         if (canGo()) {
-            int nowLocation = LocationRepository.locationRepository.get(car.getName());
-            LocationRepository.locationRepository.put(car, nowLocation + 1);
+            int nowLocation = LocationRepository.getLocation(car);
+            LocationRepository.saveLocation(car, nowLocation);
         }
     }
 

@@ -19,4 +19,8 @@ public class CarRepository {
                 .findFirst()
                 .get();
     }
+
+    public static List<Car> getAll(){
+        return  Collections.unmodifiableList(carRepository);
+    }
 }

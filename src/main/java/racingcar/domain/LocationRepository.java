@@ -18,4 +18,8 @@ public class LocationRepository {
     public static int getLocation(Car car){
         return locationRepository.get(car);
     }
+
+    public Map<Car, Integer> getAll(){
+        return Collections.unmodifiableMap(locationRepository);
+    }
 }
