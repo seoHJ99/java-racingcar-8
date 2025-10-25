@@ -14,7 +14,7 @@ public class RaceJudge {
     private final CarRepository carRepository;
     private final LocationRepository locationRepository;
     private final String DIGIT_REGEX = "^[1-9]\\d*$";
-    private final int FORWARD_NUMBER = 5;
+    private final int FORWARD_NUMBER = 4;
 
     public RaceJudge(CarRepository carRepository, LocationRepository locationRepository) {
         this.carRepository = carRepository;
