@@ -11,12 +11,19 @@ import java.util.Map;
 
 public class RaceJudge {
 
+    private final CarRepository carRepository;
+    private final LocationRepository locationRepository;
     private final String DIGIT_REGEX = "^[1-9]\\d*$";
     private final int FORWARD_NUMBER = 5;
 
+    public RaceJudge(CarRepository carRepository, LocationRepository locationRepository) {
+        this.carRepository = carRepository;
+        this.locationRepository = locationRepository;
+    }
+
     private void registerCar(Car car) {
-        LocationRepository.saveLocation(car, 0);
-        CarRepository.saveCar(car);
+        locationRepository.saveLocation(car, 0);
+        carRepository.saveCar(car);
     }
 
     public void registerAllCars(List<Car> cars) {
@@ -44,8 +51,8 @@ public class RaceJudge {
         List<Car> winnerList = new ArrayList<>();
         int winnerLocation = getHighestLocation();
 
-        for (Car car : CarRepository.getAll()) {
-            if (winnerLocation == LocationRepository.getLocation(car)) {
+        for (Car car : carRepository.getAll()) {
+            if (winnerLocation == locationRepository.getLocation(car)) {
                 winnerList.add(car);
             }
         }
@@ -59,7 +66,7 @@ public class RaceJudge {
     }
 
     private boolean alreadyExist(Car car) {
-        if (CarRepository.findByName(car.getName()) == null) {
+        if (carRepository.findByName(car.getName()) == null) {
             return false;
         }
         return true;
@@ -74,8 +81,8 @@ public class RaceJudge {
 
     private void goForward(Car car) {
         if (canGo()) {
-            int nowLocation = LocationRepository.getLocation(car);
-            LocationRepository.saveLocation(car, nowLocation + 1);
+            int nowLocation = locationRepository.getLocation(car);
+            locationRepository.saveLocation(car, nowLocation + 1);
         }
     }
 
@@ -89,7 +96,7 @@ public class RaceJudge {
 
     private int getHighestLocation() {
         int max = 0;
-        for (Map.Entry<Car, Integer> entry : LocationRepository.getAll().entrySet()) {
+        for (Map.Entry<Car, Integer> entry : locationRepository.getAll().entrySet()) {
             max = Math.max(entry.getValue(), max);
         }
         return max;

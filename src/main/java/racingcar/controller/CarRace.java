@@ -12,32 +12,35 @@ public class CarRace {
 
     private final RaceJudge raceJudge;
     private final CarFactory carFactory;
+    private final InputView inputView;
+    private final OutputView outputView;
 
-    public CarRace(RaceJudge raceJudge, CarFactory carFactory){
+    public CarRace(RaceJudge raceJudge, CarFactory carFactory, OutputView outputView, InputView inputView) {
         this.raceJudge = raceJudge;
         this.carFactory = carFactory;
+        this.outputView = outputView;
+        this.inputView = inputView;
     }
 
-
     public void start() {
-        OutputView.requestNames();
-        String namesInput = InputView.inputString();
+        outputView.requestNames();
+        String namesInput = inputView.inputString();
         List<Car> cars = carFactory.createCars(namesInput);
         raceJudge.registerAllCars(cars);
 
-        OutputView.requestCount();
-        String tryInput = InputView.inputString();
+        outputView.requestCount();
+        String tryInput = inputView.inputString();
 
         int count = raceJudge.getTryCount(tryInput);
-        List<Car> winners= runRace(count, cars);
+        List<Car> winners = runRace(count, cars);
 
-        OutputView.outputFinalResult(winners);
+        outputView.outputFinalResult(winners);
     }
 
-    private List<Car> runRace(int count, List<Car> cars){
+    private List<Car> runRace(int count, List<Car> cars) {
         for (int i = 0; i < count; i++) {
             raceJudge.forwardOnce(cars);
-            OutputView.outputOnceTryResult(cars);
+            outputView.outputOnceTryResult(cars);
         }
         return raceJudge.getWinner();
     }

@@ -8,17 +8,17 @@ import java.util.Map;
 
 public class LocationRepository {
 
-    private static final Map<Car, Integer> locationRepository = new HashMap<>();
+    private final Map<Car, Integer> locationRepository = new HashMap<>();
 
-    public static void saveLocation(Car car, int location) {
+    public void saveLocation(Car car, int location) {
         locationRepository.put(car, location);
     }
 
-    public static int getLocation(Car car) {
+    public int getLocation(Car car) {
         return locationRepository.get(car);
     }
 
-    public static Map<Car, Integer> getAll() {
+    public Map<Car, Integer> getAll() {
         return Collections.unmodifiableMap(locationRepository);
     }
 }
