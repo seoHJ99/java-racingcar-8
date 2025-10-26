@@ -35,4 +35,8 @@ public class CarRepository {
     public List<Car> getAll() {
         return Collections.unmodifiableList(carRepository);
     }
+
+    public void clearAll(){
+        carRepository.clear();
+    }
 }

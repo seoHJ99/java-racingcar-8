@@ -30,4 +30,8 @@ public class LocationRepository {
     public Map<Car, Integer> getAll() {
         return Collections.unmodifiableMap(locationRepository);
     }
+
+    public void clearAll(){
+        locationRepository.clear();
+    }
 }
