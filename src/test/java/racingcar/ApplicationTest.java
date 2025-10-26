@@ -66,8 +66,18 @@ class ApplicationTest extends NsTest {
                         .isInstanceOf(EmptyNameException.class)
         );
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"0", "-1", "0.1"})
+    @DisplayName("시도 횟수 자연수 예외 테스트")
+    void 예외_테스트_4(String count) {
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException("pobi,woni", count))
+                        .isInstanceOf(IllegalArgumentException.class)
+                        .isInstanceOf(NotNaturalNumberException.class)
         );
     }
+
 
     @Override
     public void runMain() {
