@@ -2,6 +2,9 @@ package racingcar.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import racingcar.domain.car.Car;
+import racingcar.exception.DuplicateNameException;
+import racingcar.exception.NotNaturalNumberException;
+import racingcar.exception.TooBigNumberException;
 import racingcar.repository.CarRepository;
 import racingcar.repository.LocationRepository;
 
@@ -29,7 +32,7 @@ public class RaceJudge {
     public void registerAllCars(List<Car> cars) {
         for (Car car : cars) {
             if (alreadyExist(car)) {
-                throw new IllegalArgumentException("자동차 이름은 고유해야 합니다.");
+                throw new DuplicateNameException();
             }
             registerCar(car);
         }
@@ -37,13 +40,13 @@ public class RaceJudge {
 
     public int getTryCount(String count) {
         if (!isPositiveNumber(count)) {
-            throw new IllegalArgumentException("시도 횟수는 양수로 입력되어야만 합니다.");
+            throw new NotNaturalNumberException();
         }
 
         try {
             return Integer.parseInt(count);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("시도 횟수가 너무 큽니다.");
+            throw new TooBigNumberException();
         }
     }
 
