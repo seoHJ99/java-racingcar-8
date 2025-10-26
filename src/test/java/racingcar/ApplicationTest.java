@@ -9,6 +9,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.exception.DuplicateNameException;
 import racingcar.exception.EmptyNameException;
 import racingcar.exception.NotNaturalNumberException;
+import racingcar.exception.TooBigNumberException;
 import racingcar.repository.CarRepository;
 import racingcar.repository.LocationRepository;
 
@@ -75,6 +76,16 @@ class ApplicationTest extends NsTest {
                 assertThatThrownBy(() -> runException("pobi,woni", count))
                         .isInstanceOf(IllegalArgumentException.class)
                         .isInstanceOf(NotNaturalNumberException.class)
+        );
+    }
+
+    @Test
+    @DisplayName("시도 횟수가 int 한계를 넘을때 테스트")
+    void 예외_테스트_5() {
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException("pobi", "2147483648"))
+                        .isInstanceOf(IllegalArgumentException.class)
+                        .isInstanceOf(TooBigNumberException.class)
         );
     }
 
