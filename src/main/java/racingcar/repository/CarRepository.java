@@ -1,4 +1,4 @@
-package racingcar.domain.repository;
+package racingcar.repository;
 
 import racingcar.domain.car.Car;
 

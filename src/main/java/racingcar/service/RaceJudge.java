@@ -2,8 +2,8 @@ package racingcar.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import racingcar.domain.car.Car;
-import racingcar.domain.repository.CarRepository;
-import racingcar.domain.repository.LocationRepository;
+import racingcar.repository.CarRepository;
+import racingcar.repository.LocationRepository;
 
 import java.util.ArrayList;
 import java.util.List;

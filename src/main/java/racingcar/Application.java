@@ -2,8 +2,8 @@ package racingcar;
 
 import racingcar.controller.CarRace;
 import racingcar.domain.car.CarFactory;
-import racingcar.domain.repository.CarRepository;
-import racingcar.domain.repository.LocationRepository;
+import racingcar.repository.CarRepository;
+import racingcar.repository.LocationRepository;
 import racingcar.service.RaceJudge;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;

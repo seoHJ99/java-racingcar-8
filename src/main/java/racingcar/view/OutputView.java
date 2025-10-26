@@ -1,7 +1,7 @@
 package racingcar.view;
 
 import racingcar.domain.car.Car;
-import racingcar.domain.repository.LocationRepository;
+import racingcar.repository.LocationRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;
